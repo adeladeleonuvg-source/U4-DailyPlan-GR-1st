@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colegio Montano Interactive Whiteboard - 1st Grade Grammar Unit 4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F2F5E9; }
+        .bg-montano-blue { background-color: #1269A8; }
+        .text-montano-blue { color: #1269A8; }
+        .bg-montano-yellow { background-color: #F7D615; }
+        .text-montano-yellow { color: #D4B502; }
+        .bg-montano-green { background-color: #54887D; }
+        .text-montano-green { color: #54887D; }
+        .bg-montano-lightblue { background-color: #88B5C7; }
+        .bg-montano-olive { background-color: #A6B046; }
+        .bg-montano-bg { background-color: #F2F5E9; }
+        .tab-btn.active { background-color: #1269A8; color: white; border-bottom: 4px solid #F7D615; }
+    </style>
+</head>
+<body class="bg-montano-bg min-h-screen flex flex-col text-slate-800">
+
+    <!-- Top Header Bar -->
+    <header class="bg-montano-blue text-white shadow-md p-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" alt="Colegio Montano Logo" class="w-12 h-12 object-contain bg-white rounded-full p-1 shadow">
+            <div>
+                <h1 class="text-xl font-extrabold tracking-tight">Colegio Montano | Interactive Digital Whiteboard</h1>
+                <p class="text-xs text-montano-yellow font-medium">1st Grade Grammar • Unit 4 (Our World 1) • Teacher: Nicole De León</p>
+            </div>
+        </div>
+        
+        <!-- Session Selector & Fullscreen Button -->
+        <div class="flex flex-wrap items-center gap-2">
+            <label for="sessionSelect" class="text-xs font-semibold text-white uppercase tracking-wider">Select Class:</label>
+            <select id="sessionSelect" onchange="changeSession(this.value)" class="bg-white text-slate-800 font-semibold text-sm px-3 py-1.5 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-[#F7D615]">
+                <option value="1">Class 1: Aug 12 (Like w/ Count Nouns - SB 136)</option>
+                <option value="2">Class 2: Aug 14 (Like w/ Noncount Nouns - SB 137)</option>
+                <option value="3">Class 3: Aug 19 (Count/Noncount Practice - WB 95-96)</option>
+                <option value="4">Class 4: Aug 21 (Review Vocab 1 & 2 - Our World)</option>
+                <option value="5">Class 5: Aug 26 (Articles a/an - SB 139)</option>
+                <option value="6">Class 6: Aug 28 (Articles Practice - WB 98-99)</option>
+                <option value="7">Class 7: Sep 2 (Present Prog: they are + verb-ing - SB 152)</option>
+                <option value="8">Class 8: Sep 4 (Present Progressive Practice - SB 153)</option>
+                <option value="9">Class 9: Sep 9 (Present Prog WB 107-108)</option>
+                <option value="10">Class 10: Sep 11 (Want + Infinitive - SB 155)</option>
+                <option value="11">Class 11: Sep 16 (Want + Infinitive Practice - WB 110)</option>
+                <option value="12">Class 12: Sep 18 (Want + Infinitive WB 111)</option>
+                <option value="13">Class 13: Sep 23 (Review Units 8 to 9 - WB 116)</option>
+                <option value="14">Class 14: Sep 25 (Review Units 8 to 9 - WB 117)</option>
+                <option value="15">Class 15: Sep 30 (Comprehensive Grammar Mastery)</option>
+                <option value="16">Class 16: Oct 2 (Unit 4 Final Showcase & Evaluation)</option>
+            </select>
+            <button onclick="toggleFullScreen()" class="bg-[#F7D615] text-slate-900 font-bold px-3 py-1.5 rounded-lg shadow hover:bg-yellow-400 transition flex items-center gap-1 text-xs uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                Fullscreen
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 flex flex-col gap-6">
+
+        <!-- Metadata & Institutional Info Banner -->
+        <section class="bg-white rounded-2xl p-4 shadow border border-slate-200 grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+            <div>
+                <span class="block text-xs font-bold text-montans-blue text-montano-green uppercase">Course & Theme</span>
+                <strong id="metaTitle" class="text-slate-700">Grammar: Like with count and noncount nouns (SB 136)</strong>
+            </div>
+            <div>
+                <span class="block text-xs font-bold text-montano-green uppercase">Montano Habit & Leader in Me</span>
+                <strong id="metaHabit" class="text-slate-700">Habit 1: Be Proactive & Habit 2: Begin with the End in Mind</strong>
+            </div>
+            <div>
+                <span class="block text-xs font-bold text-montano-green uppercase">CNB Competency (Guatemala)</span>
+                <strong id="metaCnb" class="text-slate-700">Uses basic English structures to express food preferences clearly.</strong>
+            </div>
+            <div>
+                <span class="block text-xs font-bold text-montano-green uppercase">Date & Teacher</span>
+                <strong id="metaDate" class="text-slate-700">August 12, 2026 | Maestra: Nicole De León</strong>
+            </div>
+        </section>
+
+        <!-- Interactive Tabs Navigation -->
+        <nav class="flex rounded-xl bg-white shadow overflow-hidden border border-slate-200">
+            <button onclick="switchTab('intro')" id="btn-intro" class="tab-btn active flex-1 py-3 px-4 text-center font-bold text-sm transition flex items-center justify-center gap-2">
+                <span>🎯</span> I) Intro Motivante (~5m)
+            </button>
+            <button onclick="switchTab('individual')" id="btn-individual" class="tab-btn flex-1 py-3 px-4 text-center font-bold text-sm transition flex items-center justify-center gap-2">
+                <span>✏️</span> II) Trabajo Individual (20m)
+            </button>
+            <button onclick="switchTab('cooperative')" id="btn-cooperative" class="tab-btn flex-1 py-3 px-4 text-center font-bold text-sm transition flex items-center justify-center gap-2">
+                <span>🤝</span> III) Trabajo Cooperativo (30m)
+            </button>
+            <button onclick="switchTab('closing')" id="btn-closing" class="tab-btn flex-1 py-3 px-4 text-center font-bold text-sm transition flex items-center justify-center gap-2">
+                <span>🚀</span> IV) Plenaria & Cierre (15m)
+            </button>
+            <button onclick="switchTab('evaluation')" id="btn-evaluation" class="tab-btn flex-1 py-3 px-4 text-center font-bold text-sm transition flex items-center justify-center gap-2">
+                <span>📊</span> Evaluation Rubric
+            </button>
+        </nav>
+
+        <!-- Tab Content Display Area -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 flex-1 flex flex-col justify-between">
+            
+            <!-- TAB I: INTRODUCTION -->
+            <div id="tab-intro" class="tab-pane space-y-4">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h2 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+                        <span>🎯</span> Pestaña I: Introducción Motivante (~5 minutes)
+                    </h2>
+                    <span class="bg-[#F7D615] text-slate-900 text-xs font-extrabold px-3 py-1 rounded-full">Warm-Up & Vocabulary Review</span>
+                </div>
+                <div class="space-y-3 text-slate-700 leading-relaxed" id="contentIntro">
+                    <!-- Dynamic content inserted by JS -->
+                </div>
+                <div class="mt-4 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                    <h4 class="font-bold text-amber-900 text-sm">🏠 Take-Home Investigation Challenge:</h4>
+                    <p id="homeIntro" class="text-xs text-amber-800 mt-1">Look in your kitchen tonight and list 2 things you like to eat with your family.</p>
+                </div>
+            </div>
+
+            <!-- TAB II: INDIVIDUAL WORK -->
+            <div id="tab-individual" class="tab-pane hidden space-y-4">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h2 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+                        <span>✏️</span> Pestaña II: Trabajo Individual (20 minutes)
+                    </h2>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full">Student Book & Guided Practice</span>
+                </div>
+                <div class="space-y-3 text-slate-700 leading-relaxed" id="contentIndividual">
+                    <!-- Dynamic content inserted by JS -->
+                </div>
+                <!-- Interactive Accordion for Self-Evaluation / Hidden Solution -->
+                <div class="mt-4 border border-slate-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleAccordion('solutionAccordion')" class="w-full bg-slate-100 p-3 text-left font-bold text-sm flex justify-between items-center text-montano-blue hover:bg-slate-200 transition">
+                        <span>💡 Click here for Hidden Solutions & Guided Answers (Auto-Evaluation)</span>
+                        <span id="accordionArrow">▼</span>
+                    </button>
+                    <div id="solutionAccordion" class="hidden p-4 bg-slate-50 text-xs text-slate-700 border-t space-y-2">
+                        <!-- Dynamic solution inserted by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB III: COOPERATIVE WORK -->
+            <div id="tab-cooperative" class="tab-pane hidden space-y-4">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h2 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+                        <span>🤝</span> Pestaña III: Trabajo Cooperativo / en Equipo (30 minutes)
+                    </h2>
+                    <span class="bg-sky-100 text-sky-800 text-xs font-extrabold px-3 py-1 rounded-full">Workbook & Collaborative Roleplay</span>
+                </div>
+                <div class="space-y-3 text-slate-700 leading-relaxed" id="contentCooperative">
+                    <!-- Dynamic content inserted by JS -->
+                </div>
+            </div>
+
+            <!-- TAB IV: CLOSING & SIMULATOR / GAME -->
+            <div id="tab-closing" class="tab-pane hidden space-y-4">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h2 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+                        <span>🚀</span> Pestaña IV: Plenaria & Cierre (15 minutes)
+                    </h2>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs font-extrabold px-3 py-1 rounded-full">Plenary, Mini-Game & Reflection</span>
+                </div>
+                <div class="space-y-3 text-slate-700 leading-relaxed" id="contentClosing">
+                    <!-- Dynamic content inserted by JS -->
+                </div>
+            </div>
+
+            <!-- TAB V: EVALUATION RUBRIC -->
+            <div id="tab-evaluation" class="tab-pane hidden space-y-4">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h2 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+                        <span>📊</span> Instrumento de Evaluación (Plenary Rubric)
+                    </h2>
+                    <span class="bg-teal-100 text-teal-800 text-xs font-extrabold px-3 py-1 rounded-full">Lista de Cotejo & Rúbrica</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-slate-100 border-b text-slate-700">
+                                <th class="p-3">Evaluation Criteria</th>
+                                <th class="p-3">Excellent (4 pts)</th>
+                                <th class="p-3">Good (3 pts)</th>
+                                <th class="p-3">In Progress (2 pts)</th>
+                                <th class="p-3">Needs Support (1 pt)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y text-slate-600">
+                            <tr>
+                                <td class="p-3 font-semibold text-slate-800">1. Mastery & Clarity</td>
+                                <td class="p-3">Pronounces and explains grammar target flawlessly.</td>
+                                <td class="p-3">Explains with minimal hesitation.</td>
+                                <td class="p-3">Needs teacher assistance to articulate.</td>
+                                <td class="p-3">Struggles with core vocabulary/grammar.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-slate-800">2. Logic & Procedure</td>
+                                <td class="p-3">Applies grammatical rule correctly in context.</td>
+                                <td class="p-3">Applies rule with minor slips.</td>
+                                <td class="p-3">Requires guidance on structure.</td>
+                                <td class="p-3">Incorrect application of rules.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-slate-800">3. Collaborative Work & Equity</td>
+                                <td class="p-3">Actively engages partner and respects turns (Habit 5 & 6).</td>
+                                <td class="p-3">Good teamwork with mild imbalance.</td>
+                                <td class="p-3">Shows limited peer collaboration.</td>
+                                <td class="p-3">Does not work well with teammates.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-slate-800">4. Plenary Response Capacity</td>
+                                <td class="p-3">Answers peers' questions enthusiastically.</td>
+                                <td class="p-3">Responds adequately when prompted.</td>
+                                <td class="p-3">Hesitant during Q&A session.</td>
+                                <td class="p-3">Unable to answer basic questions.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Footer Navigation Controls -->
+            <div class="mt-6 pt-4 border-t flex justify-between items-center text-xs text-slate-500 font-medium">
+                <span>Colegio Montano Educational Platform • Leader in Me Framework</span>
+                <div class="flex gap-2">
+                    <button onclick="navigateTab(-1)" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 rounded font-bold text-slate-700 transition">← Previous Tab</button>
+                    <button onclick="navigateTab(1)" class="px-3 py-1.5 bg-[#1269A8] text-white hover:bg-sky-700 rounded font-bold transition">Next Tab →</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Data bank for all 16 sessions of Unit 4 (Grammar, 1st Grade)
+        const sessionsData = {
+            1: {
+                title: "Grammar: Like with count nouns (SB 136)",
+                habit: "Habit 1: Be Proactive (Choosing positive food habits)",
+                cnb: "Identifies and uses count nouns with 'I like...' structures.",
+                date: "August 12, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Warm-Up Vocabulary 1 Review from Our World 1 (Pages 132-133: <em>cheese pizza, a salad, a sandwich, chicken, fish, a cookie, a banana, an apple, an orange, rice, soup, an egg</em>).</p>
+                    <p><strong>Dynamic:</strong> Play "Flashcard Quick Point". The teacher shows food flashcards and students call out whether it's a fruit, vegetable, or meal, practicing pronunciation with correct indefinite articles.</p>
+                `,
+                homeIntro: "Ask your parents at home: 'Do you like bananas?' and count how many people say yes.",
+                individual: `
+                    <p><strong>Student Book Pages 136:</strong> Focus on count nouns with <em>'Like'</em> (e.g., "I like bananas", "I like cookies").</p>
+                    <p>Students trace sentences and write the correct plural form of count nouns in their notebooks.</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (SB 136):</strong></p>
+                    <ol class="list-decimal pl-4 space-y-1">
+                        <li>I like <strong>bananas</strong>. (banana -> bananas)</li>
+                        <li>I like <strong>cookies</strong>. (cookie -> cookies)</li>
+                        <li>I like <strong>apples</strong>. (apple -> apples)</li>
+                    </ol>
+                `,
+                cooperative: `
+                    <p><strong>Pair Work (Workbook Page 95):</strong> Working in pairs with assigned roles (Speaker and Writer). Partner A points to a picture of a count noun and says "I like [item]s." Partner B writes or checks the sentence in the Workbook.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Pairs roleplay their favorite foods in front of the class using the song rhythm from "Yes, Please!" (SB 134-135).</p>
+                    <p><strong>Mini-Game:</strong> "Food Bingo" where students cross out count nouns as called out.</p>
+                `
+            },
+            2: {
+                title: "Grammar: Like with noncount nouns (SB 137)",
+                habit: "Habit 3: Put First Things First (Healthy eating choices)",
+                cnb: "Differentiates count nouns from noncount nouns using 'I like...' expressions.",
+                date: "August 14, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Vocabulary 2 Review (Pages 138-139: <em>rice, soup, chicken, fish, cheese pizza</em>).</p>
+                    <p><strong>Brain Gym:</strong> "Soup Stirring" motion while chanting noncount noun vocabulary words.</p>
+                `,
+                homeIntro: "Look for something in your kitchen that is served in a bowl (noncount) and draw it.",
+                individual: `
+                    <p><strong>Student Book Page 137:</strong> Introduction to noncount nouns (rice, soup) where we don't use 'a' or plural 's'.</p>
+                    <p>Students complete gap sentences: "I like rice" (not "a rice").</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (SB 137):</strong></p>
+                    <p>1. I like <strong>rice</strong>. (Correct: no 's' or 'a')</p>
+                    <p>2. I like <strong>soup</strong>. (Correct: no 's' or 'a')</p>
+                `,
+                cooperative: `
+                    <p><strong>Workbook Page 96:</strong> Teams of two match food pictures to "Count" and "Noncount" columns on a mini-poster.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Teams explain why rice and soup do not take an 's'.</p>
+                    <p><strong>Mini-Game:</strong> "Count or Noncount Clap" - clap once for count, stomp for noncount.</p>
+                `
+            },
+            3: {
+                title: "Grammar: Count & Noncount Practice (WB 95-96)",
+                habit: "Habit 6: Synergize (Working together to sort food categories)",
+                cnb: "Reinforces grammatical categorization of food nouns through collaborative exercises.",
+                date: "August 19, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Quick review of Vocabulary 1 and 2 flashcards from Unit 8.</p>
+                    <p><strong>Game:</strong> "Fast Pass" passing a beanbag while naming a food item.</p>
+                `,
+                homeIntro: "Tell a family member one count noun and one noncount noun you learned today.",
+                individual: `
+                    <p><strong>Workbook Pages 95-96:</strong> Independent completion of grammar exercises sorting count and noncount food items.</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (WB 95-96):</strong></p>
+                    <p>Count: apples, bananas, cookies, eggs, sandwiches.</p>
+                    <p>Noncount: rice, soup, milk, water, tea.</p>
+                `,
+                cooperative: `
+                    <p><strong>Pair Check:</strong> Students exchange workbooks and use green crayons to check their partner's answers respectfully (Habit 4 & 5).</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Selected pairs share their checked pages and read sentences aloud.</p>
+                    <p><strong>Trivia:</strong> "Count/Noncount Quick Quiz".</p>
+                `
+            },
+            4: {
+                title: "Vocabulary Review 1 & 2 (Our World Unit 8 Focus)",
+                habit: "Habit 2: Begin with the End in Mind (Mastering vocabulary mastery)",
+                cnb: "Recalls and applies complete unit vocabulary in structured sentences.",
+                date: "August 21, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Sing along with Song "Yes, Please!" (SB 134-135) with body actions.</p>
+                `,
+                homeIntro: "Practice singing the 'Yes, Please!' song to your family.",
+                individual: `
+                    <p><strong>Activity:</strong> Flashcard matching sheet where students draw lines from words to pictures (SB 132-133 & 138-139).</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key:</strong> Match words (banana, apple, orange, milk, water, tea, lemonade, cheese pizza, salad, sandwich, chicken, fish, rice, soup, egg, cookie) correctly to corresponding picture icons.</p>
+                `,
+                cooperative: `
+                    <p><strong>Team Quiz Bowl:</strong> Small groups compete to identify hidden vocabulary flashcards.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Winning team shares their favorite vocabulary word of the day.</p>
+                    <p><strong>Game:</strong> Pasapalabra vocabulary edition.</p>
+                `
+            },
+            5: {
+                title: "Grammar: Articles a/an (SB 139)",
+                habit: "Habit 1: Be Proactive (Attention to detail)",
+                cnb: "Distinguishes the correct usage of indefinite articles 'a' and 'an' before consonant and vowel sounds.",
+                date: "August 26, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Sound game. Listen to vowel sounds (a, e, i, o, u) vs consonant sounds.</p>
+                `,
+                homeIntro: "Find 3 objects at home starting with 'a' or 'an' and label them.",
+                individual: `
+                    <p><strong>Student Book Page 139:</strong> Rules for 'a' (before consonants like <em>a banana, a cookie</em>) and 'an' (before vowels like <em>an apple, an orange, an egg</em>).</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (SB 139):</strong></p>
+                    <p>1. <strong>a</strong> banana</p>
+                    <p>2. <strong>an</strong> apple</p>
+                    <p>3. <strong>an</strong> orange</p>
+                    <p>4. <strong>a</strong> sandwich</p>
+                `,
+                cooperative: `
+                    <p><strong>Pair Activity:</strong> One student holds a flashcard (e.g., egg), the other says the correct article phrase ("an egg").</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Random calling where students raise left hand for 'a' and right hand for 'an'.</p>
+                    <p><strong>Game:</strong> Article Detective.</p>
+                `
+            },
+            6: {
+                title: "Grammar: Articles a/an Practice (WB 98-99)",
+                habit: "Habit 3: Put First Things First (Completing exercises accurately)",
+                cnb: "Applies rules of articles 'a' and 'an' in written exercises.",
+                date: "August 28, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Quick whiteboard challenge writing 'a' or 'an' before flashed words.</p>
+                `,
+                homeIntro: "Complete any unfinished items on workbook pages 98-99 with family guidance.",
+                individual: `
+                    <p><strong>Workbook Pages 98-99:</strong> Fill in the blanks with 'a' or 'an' for vocabulary items.</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (WB 98-99):</strong></p>
+                    <p>1. <strong>a</strong> sandwich | 2. <strong>an</strong> egg | 3. <strong>a</strong> fish | 4. <strong>an</strong> orange</p>
+                `,
+                cooperative: `
+                    <p><strong>Team Check:</strong> Pairs review WB 98-99 together.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Group reporting of trickiest words encountered.</p>
+                    <p><strong>Game:</strong> Trivia wheel.</p>
+                `
+            },
+            7: {
+                title: "Grammar: Present Progressive: they are + verb-ing (SB 152)",
+                habit: "Habit 5: Seek First to Understand, Then Be Understood (Observing actions)",
+                cnb: "Identifies and uses present progressive sentences describing animal actions.",
+                date: "September 2, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Vocabulary 1 & 2 Review from Unit 9 (Pages 148-149 & 154-155: <em>dog, cat, horse, goat, cow, turtle, frog, rabbit, sheep, duck, donkey, climb, fly, swim, crawl, see</em>).</p>
+                    <p><strong>Brain Gym:</strong> Animal movement simulation (hop like a frog, climb like a cat).</p>
+                `,
+                homeIntro: "Observe a pet or animal outside and describe what it is doing to your parents.",
+                individual: `
+                    <p><strong>Student Book Page 152:</strong> Introduction to Present Progressive ("They are climbing", "They are flying", "They are swimming").</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (SB 152):</strong></p>
+                    <p>1. They are <strong>climbing</strong>.</p>
+                    <p>2. They are <strong>flying</strong>.</p>
+                `,
+                cooperative: `
+                    <p><strong>Pair Roleplay:</strong> Miming an action while partner guesses and speaks the full sentence ("They are swimming!").</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Acting out animal sentences for the class.</p>
+                    <p><strong>Game:</strong> Charades grammar edition.</p>
+                `
+            },
+            8: {
+                title: "Grammar: Present Progressive Practice (SB 153)",
+                habit: "Habit 6: Synergize (Collaborating in action descriptions)",
+                cnb: "Constructs present progressive affirmative sentences based on visual prompts.",
+                date: "September 4, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Sing along with "Animals" song (SB 150-151).</p>
+                `,
+                homeIntro: "Sing the 'Animals' song and point to pictures in SB 150.",
+                individual: `
+                    <p><strong>Student Book Page 153:</strong> Complete sentences using "They are + verb-ing".</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (SB 153):</strong></p>
+                    <p>1. They are <strong>running</strong>.</p>
+                    <p>2. They are <strong>hopping</strong>.</p>
+                    <p>3. They are <strong>singing</strong>.</p>
+                `,
+                cooperative: `
+                    <p><strong>Team Work:</strong> Small teams create a poster illustrating animals doing actions.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Gallery walk showcasing posters.</p>
+                    <p><strong>Game:</strong> Guess the action.</p>
+                `
+            },
+            9: {
+                title: "Grammar: Present Progressive WB 107-108",
+                habit: "Habit 3: Put First Things First (Workbook completion)",
+                cnb: "Reinforces present progressive structure through written workbook activities.",
+                date: "September 9, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Flashcard rapid recall of Unit 9 animals and verbs (climb, fly, swim, crawl, see).</p>
+                `,
+                homeIntro: "Write one sentence about what birds are doing outside your house.",
+                individual: `
+                    <p><strong>Workbook Pages 107-108:</strong> Independent grammar exercises writing "They are..." sentences.</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (WB 107-108):</strong></p>
+                    <p>1. They are <strong>climbing</strong> trees.</p>
+                    <p>2. They are <strong>flying</strong> high.</p>
+                `,
+                cooperative: `
+                    <p><strong>Pair Check:</strong> Partners review workbook pages together.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Volunteers read their favorite workbook sentence.</p>
+                    <p><strong>Game:</strong> Sentence race on board.</p>
+                `
+            },
+            10: {
+                title: "Grammar: Want + Infinitive (SB 155)",
+                habit: "Habit 2: Begin with the End in Mind (Expressing goals and desires)",
+                cnb: "Expresses desires and goals using the 'want + infinitive' structure.",
+                date: "September 11, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Warm-up discussion: "What do you want to do today?"</p>
+                `,
+                homeIntro: "Ask a family member: 'What do you want to eat/do tonight?'",
+                individual: `
+                    <p><strong>Student Book Page 155:</strong> Introduction to 'want + infinitive' (e.g., "I want to eat", "I want to play").</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (SB 155):</strong></p>
+                    <p>1. I want <strong>to eat</strong> an apple.</p>
+                    <p>2. I want <strong>to play</strong>.</p>
+                `,
+                cooperative: `
+                    <p><strong>Pair Interview:</strong> Students interview each other about what they want to do after school.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Sharing partner's goals with the class.</p>
+                    <p><strong>Game:</strong> Sentence chain.</p>
+                `
+            },
+            11: {
+                title: "Grammar: Want + Infinitive Practice (WB 110)",
+                habit: "Habit 1: Be Proactive (Taking charge of expressing needs)",
+                cnb: "Practices written structure of 'want + infinitive' in workbook exercises.",
+                date: "September 16, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Quick review of infinitive verbs with flashcards.</p>
+                `,
+                homeIntro: "Draw a picture of what you want to do this weekend with a sentence.",
+                individual: `
+                    <p><strong>Workbook Page 110:</strong> Completing sentences with 'want to + verb'.</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (WB 110):</strong></p>
+                    <p>1. I want <strong>to see</strong> the cat.</p>
+                    <p>2. I want <strong>to climb</strong>.</p>
+                `,
+                cooperative: `
+                    <p><strong>Team Check:</strong> Peer checking of WB 110.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Group reading of completed sentences.</p>
+                    <p><strong>Game:</strong> Quick trivia.</p>
+                `
+            },
+            12: {
+                title: "Grammar: Want + Infinitive WB 111",
+                habit: "Habit 3: Put First Things First (Completing tasks with excellence)",
+                cnb: "Solidifies comprehension of 'want + infinitive' through structured workbook application.",
+                date: "September 18, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Song review from Unit 9.</p>
+                `,
+                homeIntro: "Read your workbook sentences to an adult at home.",
+                individual: `
+                    <p><strong>Workbook Page 111:</strong> Matching and writing sentences using 'want + infinitive'.</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (WB 111):</strong></p>
+                    <p>1. Match 'I want' to 'to swim'.</p>
+                    <p>2. Complete: 'I want to fly'.</p>
+                `,
+                cooperative: `
+                    <p><strong>Pair Work:</strong> Collaborative sentence creation.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Plenary sharing of sentences.</p>
+                    <p><strong>Game:</strong> Word bridge game.</p>
+                `
+            },
+            13: {
+                title: "Review Units 8 to 9 (WB 116)",
+                habit: "Habit 2: Begin with the End in Mind (Unit review preparation)",
+                cnb: "Reviews cumulative grammar and vocabulary from Units 8 and 9.",
+                date: "September 23, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Comprehensive flashcard blitz covering all vocabulary from Units 8 & 9.</p>
+                `,
+                homeIntro: "Review vocabulary flashcards 1 through 4 with family.",
+                individual: `
+                    <p><strong>Workbook Page 116:</strong> Review exercises covering food count/noncount nouns and articles.</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (WB 116):</strong></p>
+                    <p>Check answers for count/noncount categorization and a/an article usage.</p>
+                `,
+                cooperative: `
+                    <p><strong>Team Quiz:</strong> Small groups compete in answering review questions.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Winning team celebration and summary discussion.</p>
+                    <p><strong>Game:</strong> Trivia championship round.</p>
+                `
+            },
+            14: {
+                title: "Review Units 8 to 9 (WB 117)",
+                habit: "Habit 3: Put First Things First (Mastering review material)",
+                cnb: "Consolidates present progressive and infinitive grammar structures.",
+                date: "September 25, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Interactive grammar game reviewing present progressive verbs.</p>
+                `,
+                homeIntro: "Explain one grammar rule you reviewed today to your family.",
+                individual: `
+                    <p><strong>Workbook Page 117:</strong> Review exercises covering 'They are...' and 'want to...' structures.</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key (WB 117):</strong></p>
+                    <p>Review solutions for present progressive and infinitive sentences.</p>
+                `,
+                cooperative: `
+                    <p><strong>Pair Review:</strong> Partner evaluation and error correction.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Closing reflection on growth throughout Unit 4.</p>
+                    <p><strong>Game:</strong> Pasapalabra grand review.</p>
+                `
+            },
+            15: {
+                title: "Comprehensive Grammar Mastery & Practice",
+                habit: "Habit 7: Sharpen the Saw (Reflecting on learning journey)",
+                cnb: "Integrates all grammar structures learned in Unit 4 into cohesive oral and written expression.",
+                date: "September 30, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Celebration song and dance from Our World 1.</p>
+                `,
+                homeIntro: "Prepare your favorite grammar sentence from Unit 4 to share tomorrow.",
+                individual: `
+                    <p><strong>Activity:</strong> Comprehensive mini-quiz worksheet combining count/noncount nouns, articles, present progressive, and infinitives.</p>
+                `,
+                solution: `
+                    <p><strong>Answer Key:</strong> Verified teacher answer key for comprehensive mini-quiz.</p>
+                `,
+                cooperative: `
+                    <p><strong>Collaborative Board Game:</strong> Teams play a grammar board game reviewing all Unit 4 topics.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Team presentations of their grammar board game journey.</p>
+                    <p><strong>Game:</strong> Jeopardy Grammar Edition.</p>
+                `
+            },
+            16: {
+                title: "Unit 4 Final Showcase & Evaluation",
+                habit: "Habit 2: Begin with the End in Mind (Celebrating learning success)",
+                cnb: "Demonstrates overall mastery of Unit 4 grammar and vocabulary in a communicative showcase.",
+                date: "October 2, 2026 | Maestra: Nicole De León",
+                intro: `
+                    <p><strong>Activity:</strong> Unit 4 Celebration Circle. Students share their favorite food and animal sentences.</p>
+                `,
+                homeIntro: "Show your family your completed Unit 4 portfolio and celebrate your learning!",
+                individual: `
+                    <p><strong>Activity:</strong> Final oral presentation checklist evaluation with Maestra Nicole.</p>
+                `,
+                solution: `
+                    <p><strong>Evaluation Criteria:</strong> Assessed via the interactive rubric in Tab V.</p>
+                `,
+                cooperative: `
+                    <p><strong>Showcase Stations:</strong> Teams present their Unit 4 scrapbooks to peers.</p>
+                `,
+                closing: `
+                    <p><strong>Plenary:</strong> Award ceremony for outstanding collaboration and grammar mastery.</p>
+                    <p><strong>Game:</strong> Celebration Trivia Party.</p>
+                `
+            }
+        };
+
+        let currentTab = 'intro';
+        let currentSessionId = 1;
+
+        function switchTab(tabId) {
+            currentTab = tabId;
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        function changeSession(sessionId) {
+            currentSessionId = sessionId;
+            const data = sessionsData[sessionId];
+            
+            document.getElementById('metaTitle').innerText = "Grammar: " + data.title;
+            document.getElementById('metaHabit').innerText = data.habit;
+            document.getElementById('metaCnb').innerText = data.cnb;
+            document.getElementById('metaDate').innerText = data.date;
+
+            document.getElementById('contentIntro').innerHTML = data.intro;
+            document.getElementById('homeIntro').innerText = data.homeIntro;
+            document.getElementById('contentIndividual').innerHTML = data.individual;
+            document.getElementById('solutionAccordion').innerHTML = data.solution;
+            document.getElementById('contentCooperative').innerHTML = data.cooperative;
+            document.getElementById('contentClosing').innerHTML = data.closing;
+        }
+
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            const arrow = document.getElementById('accordionArrow');
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                arrow.innerText = '▲';
+            } else {
+                el.classList.add('hidden');
+                arrow.innerText = '▼';
+            }
+        }
+
+        function navigateTab(direction) {
+            const tabs = ['intro', 'individual', 'cooperative', 'closing', 'evaluation'];
+            let index = tabs.indexOf(currentTab);
+            index += direction;
+            if (index < 0) index = tabs.length - 1;
+            if (index >= tabs.length) index = 0;
+            switchTab(tabs[index]);
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Initialize first session on load
+        window.onload = function() {
+            changeSession(1);
+        };
+    </script>
+</body>
+</html>
